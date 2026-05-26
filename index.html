@@ -585,14 +585,41 @@ Réponds UNIQUEMENT en JSON valide, sans backticks, sans commentaires, avec exac
         messages: [{ role: 'user', content: prompt }]
       })
     });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      const msg = errData?.error?.message || `Erreur HTTP ${response.status}`;
+      hideLoading();
+      showManualError(`Erreur API Claude : ${msg}`);
+      return;
+    }
+
     const data = await response.json();
-    const text = data.content?.map(b => b.text || '').join('').trim();
+    console.log('API response:', data);
+
+    if (!data.content || !data.content.length) {
+      hideLoading();
+      showManualError(`Réponse vide de l'API. Détail : ${JSON.stringify(data)}`);
+      return;
+    }
+
+    const text = data.content.map(b => b.text || '').join('').trim();
+    console.log('Raw text:', text);
+
     const clean = text.replace(/```json|```/g, '').trim();
-    const parsed = JSON.parse(clean);
+    let parsed;
+    try {
+      parsed = JSON.parse(clean);
+    } catch(parseErr) {
+      hideLoading();
+      showManualError(`Erreur de parsing JSON. Réponse reçue : ${text.substring(0, 200)}...`);
+      return;
+    }
     renderResults(parsed);
   } catch(e) {
     hideLoading();
-    showManualError('Erreur lors de l\'analyse Claude. Réessaie.');
+    showManualError(`Erreur : ${e.message || e}`);
+
   }
 }
 
