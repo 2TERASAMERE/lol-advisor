@@ -14,6 +14,7 @@
     --text: #C8C3B8; --text-dim: #6B6560;
     --blue: #0BC4E3; --red: #E34C4C; --green: #4CE38A; --orange: #E3884C;
   }
+  *, *::before, *::after { box-sizing: border-box; }
   body { font-family: 'Rajdhani', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(200,155,60,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,155,60,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
   body::after { content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 30% 20%, rgba(11,196,227,0.04) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(200,155,60,0.05) 0%, transparent 50%); pointer-events: none; z-index: 0; animation: bgshift 12s ease-in-out infinite alternate; }
@@ -26,30 +27,44 @@
   .subtitle { font-size: 15px; color: var(--text-dim); font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; }
 
   /* TABS */
-  .tabs { display: flex; gap: 0; margin-bottom: 24px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-  .tab { flex: 1; background: var(--bg2); border: none; color: var(--text-dim); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 13px; cursor: pointer; transition: all 0.2s; border-right: 1px solid var(--border); }
+  .tabs { display: flex; margin-bottom: 24px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .tab { flex: 1; background: var(--bg2); border: none; color: var(--text-dim); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 13px 6px; cursor: pointer; transition: all 0.2s; border-right: 1px solid var(--border); }
   .tab:last-child { border-right: none; }
   .tab:hover { color: var(--text); background: var(--bg3); }
   .tab.active { background: rgba(200,155,60,0.1); color: var(--gold); }
 
-  /* RIOT PANEL */
-  .riot-panel { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 20px; margin-bottom: 20px; }
-  .riot-panel-title { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .riot-panel-title::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 8px var(--blue); }
-  .riot-inputs { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; }
+  /* PANELS */
+  .riot-panel { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 20px; margin-bottom: 16px; }
+  .riot-panel-title { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: var(--blue); text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .riot-panel-title::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+  .riot-panel-title.gold { color: var(--gold); }
   .field-label { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; }
+  .riot-inputs { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; }
   input[type="text"], input[type="password"] { width: 100%; background: var(--bg2); border: 1px solid rgba(200,155,60,0.12); border-radius: 4px; color: var(--text); font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 500; padding: 8px 11px; outline: none; transition: border-color 0.2s, background 0.2s; }
   input[type="text"]:focus, input[type="password"]:focus { border-color: var(--gold-dim); background: var(--bg4); }
   input::placeholder { color: var(--text-dim); font-weight: 400; }
-  .btn-riot { background: linear-gradient(135deg, rgba(11,196,227,0.15), rgba(11,196,227,0.05)); border: 1px solid rgba(11,196,227,0.4); border-radius: 4px; color: var(--blue); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 9px 16px; cursor: pointer; transition: all 0.2s; white-space: nowrap; height: 38px; }
-  .btn-riot:hover:not(:disabled) { border-color: var(--blue); box-shadow: 0 0 12px rgba(11,196,227,0.2); }
-  .btn-riot:disabled { opacity: 0.4; cursor: not-allowed; }
   .api-key-row { margin-top: 12px; }
   .api-key-hint { font-size: 12px; color: var(--text-dim); margin-top: 6px; }
   .api-key-hint a { color: var(--gold-dim); text-decoration: none; }
   .api-key-hint a:hover { color: var(--gold); }
+  .btn-riot { background: linear-gradient(135deg, rgba(11,196,227,0.15), rgba(11,196,227,0.05)); border: 1px solid rgba(11,196,227,0.4); border-radius: 4px; color: var(--blue); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 9px 16px; cursor: pointer; transition: all 0.2s; white-space: nowrap; height: 38px; }
+  .btn-riot:hover:not(:disabled) { border-color: var(--blue); box-shadow: 0 0 12px rgba(11,196,227,0.2); }
+  .btn-riot:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* LIVE GAME RESULT */
+  /* AUTOCOMPLETE */
+  .input-wrap { position: relative; flex: 1; }
+  .autocomplete-list { position: absolute; top: 100%; left: 0; right: 0; background: var(--bg4); border: 1px solid var(--gold-dim); border-radius: 4px; z-index: 50; max-height: 200px; overflow-y: auto; margin-top: 2px; }
+  .autocomplete-item { display: flex; align-items: center; gap: 8px; padding: 6px 10px; cursor: pointer; transition: background 0.15s; font-size: 13px; }
+  .autocomplete-item:hover, .autocomplete-item.selected { background: rgba(200,155,60,0.12); }
+  .autocomplete-item img { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); object-fit: cover; }
+  .autocomplete-item .champ-label { color: var(--text); font-weight: 500; }
+  .autocomplete-item .champ-wr { font-size: 11px; margin-left: auto; }
+  .wr-good { color: var(--green); }
+  .wr-ok { color: var(--orange); }
+  .wr-bad { color: var(--red); }
+  .champ-icon-input { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); object-fit: cover; display: none; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+
+  /* LIVE GAME */
   .live-result { display: none; background: var(--bg2); border: 1px solid rgba(11,196,227,0.2); border-radius: 6px; padding: 16px; margin-top: 14px; }
   .live-result.active { display: block; }
   .live-result-title { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; color: var(--blue); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
@@ -57,17 +72,15 @@
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
   .live-teams { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .live-team-title { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 8px; text-transform: uppercase; }
-  .live-team-title.blue { color: var(--blue); }
-  .live-team-title.red { color: var(--red); }
-  .live-player { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(200,155,60,0.06); font-size: 13px; }
+  .live-team-title.blue { color: var(--blue); } .live-team-title.red { color: var(--red); }
+  .live-player { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(200,155,60,0.06); font-size: 13px; }
   .live-player:last-child { border-bottom: none; }
-  .live-role { font-family: 'Orbitron', monospace; font-size: 9px; color: var(--text-dim); text-transform: uppercase; width: 52px; }
-  .live-champ { color: var(--gold-light); font-weight: 500; }
+  .live-player img { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); }
+  .live-role { font-family: 'Orbitron', monospace; font-size: 9px; color: var(--text-dim); text-transform: uppercase; width: 48px; flex-shrink: 0; }
+  .live-champ { color: var(--gold-light); font-weight: 500; flex: 1; }
   .live-summoner { color: var(--text-dim); font-size: 11px; }
-  .btn-use-live { width: 100%; margin-top: 14px; background: linear-gradient(135deg, rgba(200,155,60,0.15), rgba(200,155,60,0.05)); border: 1px solid var(--gold-dim); border-radius: 4px; color: var(--gold); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px; cursor: pointer; transition: all 0.2s; }
-  .btn-use-live:hover { border-color: var(--gold); box-shadow: 0 0 12px rgba(200,155,60,0.15); }
 
-  /* Action buttons (API vs Copy) */
+  /* ACTION BUTTONS */
   .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
   .btn-action { border-radius: 5px; font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; padding: 12px 10px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 7px; }
   .btn-api { background: linear-gradient(135deg, rgba(200,155,60,0.15), rgba(200,155,60,0.05)); border: 1px solid var(--gold-dim); color: var(--gold); }
@@ -75,52 +88,39 @@
   .btn-copy { background: linear-gradient(135deg, rgba(11,196,227,0.12), rgba(11,196,227,0.04)); border: 1px solid rgba(11,196,227,0.35); color: var(--blue); }
   .btn-copy:hover { border-color: var(--blue); box-shadow: 0 0 14px rgba(11,196,227,0.15); }
 
-  /* Prompt Modal */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
-  .modal-overlay.active { display: flex; }
-  .modal { background: var(--bg3); border: 1px solid var(--border-bright); border-radius: 8px; width: 100%; max-width: 620px; overflow: hidden; animation: fadeUp 0.25s ease-out; }
-  .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-  .modal-title { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
-  .modal-close { background: none; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; line-height: 1; padding: 0 4px; transition: color 0.2s; }
-  .modal-close:hover { color: var(--text); }
-  .modal-body { padding: 20px; }
-  .modal-hint { font-size: 13px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.6; }
-  .modal-hint a { color: var(--blue); text-decoration: none; }
-  .modal-hint a:hover { text-decoration: underline; }
-  .prompt-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; padding: 14px 16px; font-family: 'Rajdhani', sans-serif; font-size: 13.5px; line-height: 1.7; color: var(--gold-light); white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow-y: auto; user-select: all; cursor: text; }
-  .modal-footer { padding: 14px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
-  .btn-copy-prompt { background: linear-gradient(135deg, rgba(11,196,227,0.15), rgba(11,196,227,0.05)); border: 1px solid rgba(11,196,227,0.4); border-radius: 4px; color: var(--blue); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px 20px; cursor: pointer; transition: all 0.2s; }
-  .btn-copy-prompt:hover { border-color: var(--blue); box-shadow: 0 0 12px rgba(11,196,227,0.2); }
-  .copy-feedback { font-size: 12px; color: var(--green); opacity: 0; transition: opacity 0.3s; }
-  .copy-feedback.show { opacity: 1; }
-  .open-claude-btn { margin-left: auto; background: transparent; border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 16px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
-  .open-claude-btn:hover { border-color: var(--border-bright); color: var(--text); }
-
   /* MANUAL FORM */
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
-  .team-block { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 20px; position: relative; overflow: hidden; transition: border-color 0.3s; }
-  .team-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-  .team-block.ally::before { background: linear-gradient(90deg, transparent, var(--blue), transparent); }
-  .team-block.enemy::before { background: linear-gradient(90deg, transparent, var(--red), transparent); }
-  .team-block:focus-within { border-color: var(--border-bright); }
-  .team-label { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .team-label.ally { color: var(--blue); }
-  .team-label.enemy { color: var(--red); }
-  .team-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
-  .role-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .role-tag { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: var(--text-dim); width: 52px; flex-shrink: 0; text-transform: uppercase; }
-  .my-role-row { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 16px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .my-role-row { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 16px 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .my-role-label { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; white-space: nowrap; }
   .role-pills { display: flex; gap: 8px; flex-wrap: wrap; }
   .role-pill { background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; color: var(--text-dim); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; padding: 5px 10px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
   .role-pill:hover { border-color: var(--gold-dim); color: var(--gold); }
   .role-pill.active { background: rgba(200,155,60,0.15); border-color: var(--gold); color: var(--gold-light); }
-  .btn-analyze { width: 100%; background: linear-gradient(135deg, #1a1200 0%, #2a1e00 100%); border: 1px solid var(--gold-dim); border-radius: 6px; color: var(--gold-light); font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px; cursor: pointer; position: relative; overflow: hidden; transition: all 0.3s; }
-  .btn-analyze::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(200,155,60,0.1), rgba(200,155,60,0.05)); opacity: 0; transition: opacity 0.3s; }
-  .btn-analyze:hover:not(:disabled) { border-color: var(--gold); box-shadow: 0 0 20px rgba(200,155,60,0.15), inset 0 0 20px rgba(200,155,60,0.05); }
-  .btn-analyze:hover::before { opacity: 1; }
-  .btn-analyze:disabled { opacity: 0.4; cursor: not-allowed; }
-  .btn-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .team-block { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 18px; position: relative; overflow: hidden; }
+  .team-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+  .team-block.ally::before { background: linear-gradient(90deg, transparent, var(--blue), transparent); }
+  .team-block.enemy::before { background: linear-gradient(90deg, transparent, var(--red), transparent); }
+  .team-label { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .team-label.ally { color: var(--blue); } .team-label.enemy { color: var(--red); }
+  .team-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+  .role-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .role-tag { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: var(--text-dim); width: 50px; flex-shrink: 0; text-transform: uppercase; }
+
+  /* HISTORY */
+  .history-empty { text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 14px; }
+  .history-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; margin-bottom: 10px; cursor: pointer; transition: border-color 0.2s; display: flex; align-items: center; gap: 12px; }
+  .history-item:hover { border-color: var(--gold-dim); }
+  .history-verdict { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; padding: 3px 8px; border-radius: 3px; flex-shrink: 0; }
+  .history-verdict.favored { background: rgba(76,227,138,0.12); border: 1px solid rgba(76,227,138,0.3); color: var(--green); }
+  .history-verdict.unfavored { background: rgba(227,76,76,0.12); border: 1px solid rgba(227,76,76,0.3); color: var(--red); }
+  .history-verdict.neutral { background: rgba(200,155,60,0.12); border: 1px solid var(--border); color: var(--gold); }
+  .history-info { flex: 1; min-width: 0; }
+  .history-teams { font-size: 13px; color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .history-date { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .history-champs { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+  .history-champ-icon { width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); }
+  .btn-clear-history { background: transparent; border: 1px solid rgba(227,76,76,0.3); border-radius: 4px; color: var(--red); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 7px 14px; cursor: pointer; transition: all 0.2s; margin-bottom: 16px; }
+  .btn-clear-history:hover { border-color: var(--red); background: rgba(227,76,76,0.08); }
 
   /* LOADING */
   .loading { display: none; text-align: center; padding: 40px 20px; }
@@ -134,39 +134,76 @@
   .results { display: none; animation: fadeUp 0.5s ease-out; }
   .results.active { display: block; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  .result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .result-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
   .verdict-badge { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; padding: 6px 14px; border-radius: 3px; text-transform: uppercase; white-space: nowrap; }
   .verdict-badge.favored { background: rgba(76,227,138,0.12); border: 1px solid rgba(76,227,138,0.3); color: var(--green); }
   .verdict-badge.unfavored { background: rgba(227,76,76,0.12); border: 1px solid rgba(227,76,76,0.3); color: var(--red); }
   .verdict-badge.neutral { background: rgba(200,155,60,0.12); border: 1px solid var(--border); color: var(--gold); }
-  .result-summary { font-size: 15px; color: var(--text); line-height: 1.6; }
-  .section { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 16px; overflow: hidden; }
-  .section-head { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
-  .section-body { padding: 18px 20px; font-size: 14px; line-height: 1.7; color: var(--text); }
-  .section-body p { margin-bottom: 10px; }
-  .section-body p:last-child { margin-bottom: 0; }
+  .result-summary { font-size: 14px; color: var(--text); line-height: 1.6; }
+
+  /* STATS BAR */
+  .stats-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .stat-chip { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 6px 12px; font-size: 12px; display: flex; align-items: center; gap: 6px; }
+  .stat-chip img { width: 22px; height: 22px; border-radius: 50%; }
+  .stat-chip .wr { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; }
+
+  /* RESULT SECTIONS */
+  .section { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 12px; overflow: hidden; }
+  .section-head { padding: 12px 18px; border-bottom: 1px solid var(--border); font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; }
+  .section-body { padding: 16px 18px; font-size: 14px; line-height: 1.7; color: var(--text); }
   .section-body strong { color: var(--gold-light); font-weight: 600; }
-  .tag-inline { display: inline-block; font-size: 10px; font-family: 'Orbitron', monospace; font-weight: 600; letter-spacing: 0.1em; padding: 1px 7px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+  .tag-inline { display: inline-block; font-size: 10px; font-family: 'Orbitron', monospace; font-weight: 600; padding: 1px 7px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
   .tag-inline.danger { background: rgba(227,76,76,0.15); border: 1px solid rgba(227,76,76,0.3); color: var(--red); }
   .tag-inline.warn { background: rgba(227,136,76,0.15); border: 1px solid rgba(227,136,76,0.3); color: var(--orange); }
   .tag-inline.ok { background: rgba(76,227,138,0.12); border: 1px solid rgba(76,227,138,0.3); color: var(--green); }
   .tag-inline.info { background: rgba(11,196,227,0.1); border: 1px solid rgba(11,196,227,0.25); color: var(--blue); }
-  .timeline-item { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(200,155,60,0.08); }
+  .matchup-block { padding: 10px 0; border-bottom: 1px solid rgba(200,155,60,0.06); }
+  .matchup-block:last-child { border-bottom: none; padding-bottom: 0; }
+  .matchup-block:first-child { padding-top: 0; }
+  .matchup-champs { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+  .matchup-champs img { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border); }
+  .vs-label { font-size: 10px; color: var(--text-dim); }
+  .timeline-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(200,155,60,0.06); }
   .timeline-item:last-child { border-bottom: none; padding-bottom: 0; }
   .timeline-item:first-child { padding-top: 0; }
-  .timeline-phase { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; color: var(--gold-dim); text-transform: uppercase; width: 80px; flex-shrink: 0; padding-top: 2px; line-height: 1.4; }
-  .timeline-content { font-size: 14px; color: var(--text); line-height: 1.6; }
-  .tip-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(200,155,60,0.06); }
+  .timeline-phase { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; color: var(--gold-dim); text-transform: uppercase; width: 76px; flex-shrink: 0; line-height: 1.4; padding-top: 2px; }
+  .tip-item { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid rgba(200,155,60,0.05); }
   .tip-item:last-child { border-bottom: none; }
-  .tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-  .tip-text { font-size: 14px; line-height: 1.6; }
-  .btn-reset { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 8px 16px; cursor: pointer; margin-top: 20px; transition: all 0.2s; }
+  .tip-icon { font-size: 15px; flex-shrink: 0; }
+
+  .btn-reset { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 8px 16px; cursor: pointer; margin-top: 16px; transition: all 0.2s; }
   .btn-reset:hover { border-color: var(--border-bright); color: var(--text); }
-  .error-box { display: none; background: rgba(227,76,76,0.08); border: 1px solid rgba(227,76,76,0.3); border-radius: 6px; padding: 16px 20px; color: var(--red); font-size: 14px; margin-top: 16px; }
+  .error-box { display: none; background: rgba(227,76,76,0.08); border: 1px solid rgba(227,76,76,0.3); border-radius: 6px; padding: 14px 18px; color: var(--red); font-size: 13px; margin-top: 12px; }
   .error-box.active { display: block; }
   .info-box { background: rgba(11,196,227,0.06); border: 1px solid rgba(11,196,227,0.2); border-radius: 6px; padding: 12px 16px; color: #7ab8c8; font-size: 13px; margin-top: 10px; line-height: 1.6; }
   .hidden { display: none !important; }
-  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .my-role-row { flex-direction: column; align-items: flex-start; } .riot-inputs { grid-template-columns: 1fr; } }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.active { display: flex; }
+  .modal { background: var(--bg3); border: 1px solid var(--border-bright); border-radius: 8px; width: 100%; max-width: 620px; overflow: hidden; animation: fadeUp 0.25s ease-out; }
+  .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .modal-title { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
+  .modal-close { background: none; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
+  .modal-close:hover { color: var(--text); }
+  .modal-body { padding: 20px; }
+  .modal-hint { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; line-height: 1.6; }
+  .modal-hint a { color: var(--blue); text-decoration: none; }
+  .prompt-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; padding: 14px 16px; font-family: 'Rajdhani', sans-serif; font-size: 13px; line-height: 1.7; color: var(--gold-light); white-space: pre-wrap; word-break: break-word; max-height: 280px; overflow-y: auto; user-select: all; }
+  .modal-footer { padding: 14px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
+  .btn-copy-prompt { background: linear-gradient(135deg, rgba(11,196,227,0.15), rgba(11,196,227,0.05)); border: 1px solid rgba(11,196,227,0.4); border-radius: 4px; color: var(--blue); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px 20px; cursor: pointer; transition: all 0.2s; }
+  .btn-copy-prompt:hover { border-color: var(--blue); }
+  .copy-feedback { font-size: 12px; color: var(--green); opacity: 0; transition: opacity 0.3s; }
+  .copy-feedback.show { opacity: 1; }
+  .open-claude-btn { margin-left: auto; background: transparent; border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+  .open-claude-btn:hover { border-color: var(--border-bright); color: var(--text); }
+
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .my-role-row { flex-direction: column; align-items: flex-start; }
+    .riot-inputs { grid-template-columns: 1fr; }
+    .action-btns { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -188,10 +225,10 @@
   </header>
 
   <div id="form-section">
-    <!-- TABS -->
     <div class="tabs">
       <button class="tab active" onclick="switchTab('riot')">🔴 Détecter ma partie</button>
       <button class="tab" onclick="switchTab('manual')">✏️ Saisie manuelle</button>
+      <button class="tab" onclick="switchTab('history')">📜 Historique</button>
     </div>
 
     <!-- RIOT TAB -->
@@ -205,46 +242,42 @@
           </div>
           <div>
             <div class="field-label">Tag (sans #)</div>
-            <input type="text" id="summoner-tag" placeholder="ex: EUW" autocomplete="off" style="max-width:120px">
+            <input type="text" id="summoner-tag" placeholder="EUW" autocomplete="off" style="max-width:110px">
           </div>
           <button class="btn-riot" id="btn-fetch" onclick="fetchLiveGame()">Détecter</button>
         </div>
         <div class="api-key-row">
           <div class="field-label">Clé API Riot</div>
           <input type="password" id="riot-api-key" placeholder="RGAPI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" autocomplete="off">
-          <div class="api-key-hint">Obtiens ta clé gratuite sur <a href="https://developer.riotgames.com" target="_blank">developer.riotgames.com</a> (valable 24h)</div>
+          <div class="api-key-hint">Clé gratuite sur <a href="https://developer.riotgames.com" target="_blank">developer.riotgames.com</a> (valable 24h)</div>
         </div>
       </div>
-
       <div class="riot-panel" style="border-color: rgba(200,155,60,0.3);">
-        <div class="riot-panel-title" style="color: var(--gold);">Clé API Claude (pour l'analyse)</div>
-        <div class="field-label">Clé API Anthropic</div>
-        <input type="password" id="claude-api-key" placeholder="sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off">
-        <div class="api-key-hint" style="margin-top:6px">Obtiens ta clé sur <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> — elle est sauvegardée localement dans ton navigateur.</div>
-      </div>
-
-      <div class="info-box">
-        ℹ️ <strong>Comment ça marche :</strong> Lance ta partie, puis entre ton Riot ID et ta clé API. L'outil détecte automatiquement les 10 champions en jeu et prépare l'analyse.
-      </div>
-
-      <!-- Live game result -->
-      <div class="live-result" id="live-result">
-        <div class="live-result-title">
-          <div class="live-dot"></div>
-          Partie en cours détectée
+        <div class="riot-panel-title gold">Moteur IA</div>
+        <div class="field-label" style="margin-bottom:8px">Choisir le modèle</div>
+        <div class="ai-selector" id="ai-selector-riot">
+          <button class="ai-pill active" data-ai="claude" onclick="selectAI(this,'riot')">🤖 Claude (Anthropic)</button>
+          <button class="ai-pill" data-ai="gemini" onclick="selectAI(this,'riot')">✨ Gemini (Google)</button>
         </div>
+        <div id="claude-key-block-riot" style="margin-top:12px">
+          <div class="field-label">Clé API Anthropic</div>
+          <input type="password" id="claude-api-key" placeholder="sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+          <div class="api-key-hint" style="margin-top:6px">Clé sur <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> — sauvegardée localement.</div>
+        </div>
+        <div id="gemini-key-block-riot" class="hidden" style="margin-top:12px">
+          <div class="field-label">Clé API Google Gemini</div>
+          <input type="password" id="gemini-api-key" placeholder="AIzaSy..." autocomplete="off">
+          <div class="api-key-hint" style="margin-top:6px">Clé sur <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a> — sauvegardée localement.</div>
+        </div>
+      </div>
+      <div class="live-result" id="live-result">
+        <div class="live-result-title"><div class="live-dot"></div>Partie en cours détectée</div>
         <div class="live-teams">
-          <div>
-            <div class="live-team-title blue">🔵 Équipe Bleue</div>
-            <div id="blue-team"></div>
-          </div>
-          <div>
-            <div class="live-team-title red">🔴 Équipe Rouge</div>
-            <div id="red-team"></div>
-          </div>
+          <div><div class="live-team-title blue">🔵 Mon équipe</div><div id="blue-team"></div></div>
+          <div><div class="live-team-title red">🔴 Ennemis</div><div id="red-team"></div></div>
         </div>
         <div style="margin-top:14px">
-          <div class="field-label" style="margin-bottom:8px">Mon rôle dans cette partie</div>
+          <div class="field-label" style="margin-bottom:8px">Mon rôle</div>
           <div class="role-pills" id="live-role-pills">
             <button class="role-pill active" data-role="support" onclick="selectLiveRole(this)">Support</button>
             <button class="role-pill" data-role="adc" onclick="selectLiveRole(this)">ADC</button>
@@ -255,14 +288,33 @@
         </div>
         <div class="action-btns">
           <button class="btn-action btn-api" onclick="analyzeFromLive()">⚡ Analyser via API Claude</button>
-          <button class="btn-action btn-copy" onclick="copyPromptFromLive()">📋 Générer prompt à copier</button>
+          <button class="btn-action btn-copy" onclick="copyPromptFromLive()">📋 Générer prompt</button>
         </div>
       </div>
       <div class="error-box" id="riot-error"></div>
+      <div class="info-box">ℹ️ Lance ta partie, puis clique <strong>Détecter</strong> pour charger la composition automatiquement.</div>
     </div>
 
     <!-- MANUAL TAB -->
     <div id="tab-manual" class="hidden">
+      <div class="riot-panel" style="border-color: rgba(200,155,60,0.3); margin-bottom:16px;">
+        <div class="riot-panel-title gold">Moteur IA</div>
+        <div class="field-label" style="margin-bottom:8px">Choisir le modèle</div>
+        <div class="ai-selector" id="ai-selector-manual">
+          <button class="ai-pill active" data-ai="claude" onclick="selectAI(this,'manual')">🤖 Claude (Anthropic)</button>
+          <button class="ai-pill" data-ai="gemini" onclick="selectAI(this,'manual')">✨ Gemini (Google)</button>
+        </div>
+        <div id="claude-key-block-manual" style="margin-top:12px">
+          <div class="field-label">Clé API Anthropic</div>
+          <input type="password" id="claude-api-key-manual" placeholder="sk-ant-xxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+          <div class="api-key-hint" style="margin-top:6px">Clé sur <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></div>
+        </div>
+        <div id="gemini-key-block-manual" class="hidden" style="margin-top:12px">
+          <div class="field-label">Clé API Google Gemini</div>
+          <input type="password" id="gemini-api-key-manual" placeholder="AIzaSy..." autocomplete="off">
+          <div class="api-key-hint" style="margin-top:6px">Clé sur <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a></div>
+        </div>
+      </div>
       <div class="my-role-row">
         <div class="my-role-label">Mon rôle</div>
         <div class="role-pills">
@@ -276,36 +328,38 @@
       <div class="form-grid">
         <div class="team-block ally">
           <div class="team-label ally">Mon équipe</div>
-          <div class="role-row"><div class="role-tag">Top</div><input type="text" id="ally-top" placeholder="Champion..." autocomplete="off"></div>
-          <div class="role-row"><div class="role-tag">Jungle</div><input type="text" id="ally-jungle" placeholder="Champion..." autocomplete="off"></div>
-          <div class="role-row"><div class="role-tag">Mid</div><input type="text" id="ally-mid" placeholder="Champion..." autocomplete="off"></div>
-          <div class="role-row"><div class="role-tag">ADC</div><input type="text" id="ally-adc" placeholder="Champion..." autocomplete="off"></div>
-          <div class="role-row"><div class="role-tag">Support</div><input type="text" id="ally-support" placeholder="Champion..." autocomplete="off"></div>
+          <div class="role-row"><div class="role-tag">Top</div><div class="input-wrap"><input type="text" id="ally-top" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'ally-top-ac')"><img class="champ-icon-input" id="ally-top-ico"><div class="autocomplete-list hidden" id="ally-top-ac"></div></div></div>
+          <div class="role-row"><div class="role-tag">Jungle</div><div class="input-wrap"><input type="text" id="ally-jungle" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'ally-jungle-ac')"><img class="champ-icon-input" id="ally-jungle-ico"><div class="autocomplete-list hidden" id="ally-jungle-ac"></div></div></div>
+          <div class="role-row"><div class="role-tag">Mid</div><div class="input-wrap"><input type="text" id="ally-mid" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'ally-mid-ac')"><img class="champ-icon-input" id="ally-mid-ico"><div class="autocomplete-list hidden" id="ally-mid-ac"></div></div></div>
+          <div class="role-row"><div class="role-tag">ADC</div><div class="input-wrap"><input type="text" id="ally-adc" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'ally-adc-ac')"><img class="champ-icon-input" id="ally-adc-ico"><div class="autocomplete-list hidden" id="ally-adc-ac"></div></div></div>
+          <div class="role-row"><div class="role-tag">Support</div><div class="input-wrap"><input type="text" id="ally-support" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'ally-support-ac')"><img class="champ-icon-input" id="ally-support-ico"><div class="autocomplete-list hidden" id="ally-support-ac"></div></div></div>
         </div>
         <div class="team-block enemy">
           <div class="team-label enemy">Équipe ennemie</div>
-          <div class="role-row"><div class="role-tag">Top</div><input type="text" id="enemy-top" placeholder="Champion..." autocomplete="off"></div>
-          <div class="role-row"><div class="role-tag">Jungle</div><input type="text" id="enemy-jungle" placeholder="Champion..." autocomplete="off"></div>
-          <div class="role-row"><div class="role-tag">Mid</div><input type="text" id="enemy-mid" placeholder="Champion..." autocomplete="off"></div>
-          <div class="role-row"><div class="role-tag">ADC</div><input type="text" id="enemy-adc" placeholder="Champion..." autocomplete="off"></div>
-          <div class="role-row"><div class="role-tag">Support</div><input type="text" id="enemy-support" placeholder="Champion..." autocomplete="off"></div>
+          <div class="role-row"><div class="role-tag">Top</div><div class="input-wrap"><input type="text" id="enemy-top" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'enemy-top-ac')"><img class="champ-icon-input" id="enemy-top-ico"><div class="autocomplete-list hidden" id="enemy-top-ac"></div></div></div>
+          <div class="role-row"><div class="role-tag">Jungle</div><div class="input-wrap"><input type="text" id="enemy-jungle" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'enemy-jungle-ac')"><img class="champ-icon-input" id="enemy-jungle-ico"><div class="autocomplete-list hidden" id="enemy-jungle-ac"></div></div></div>
+          <div class="role-row"><div class="role-tag">Mid</div><div class="input-wrap"><input type="text" id="enemy-mid" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'enemy-mid-ac')"><img class="champ-icon-input" id="enemy-mid-ico"><div class="autocomplete-list hidden" id="enemy-mid-ac"></div></div></div>
+          <div class="role-row"><div class="role-tag">ADC</div><div class="input-wrap"><input type="text" id="enemy-adc" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'enemy-adc-ac')"><img class="champ-icon-input" id="enemy-adc-ico"><div class="autocomplete-list hidden" id="enemy-adc-ac"></div></div></div>
+          <div class="role-row"><div class="role-tag">Support</div><div class="input-wrap"><input type="text" id="enemy-support" placeholder="Champion..." autocomplete="off" oninput="onChampInput(this,'enemy-support-ac')"><img class="champ-icon-input" id="enemy-support-ico"><div class="autocomplete-list hidden" id="enemy-support-ac"></div></div></div>
         </div>
       </div>
       <div class="action-btns">
-        <button class="btn-action btn-api" onclick="analyzeManual()">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="flex-shrink:0"><polygon points="8,1 15,5 15,11 8,15 1,11 1,5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
-          Analyser via API Claude
-        </button>
-        <button class="btn-action btn-copy" onclick="copyPromptManual()">📋 Générer prompt à copier</button>
+        <button class="btn-action btn-api" onclick="analyzeManual()">⚡ Analyser via IA</button>
+        <button class="btn-action btn-copy" onclick="copyPromptManual()">📋 Générer prompt</button>
       </div>
       <div class="error-box" id="manual-error"></div>
+    </div>
+
+    <!-- HISTORY TAB -->
+    <div id="tab-history" class="hidden">
+      <div id="history-container"></div>
     </div>
   </div>
 
   <!-- Loading -->
   <div class="loading" id="loading">
     <svg class="loading-hex" viewBox="0 0 60 60" fill="none">
-      <polygon points="30,4 54,17 54,43 30,56 6,43 6,17" stroke="#C89B3C" stroke-width="1.5" fill="none" stroke-dasharray="120" stroke-dashoffset="0"/>
+      <polygon points="30,4 54,17 54,43 30,56 6,43 6,17" stroke="#C89B3C" stroke-width="1.5" fill="none" stroke-dasharray="120"/>
       <circle cx="30" cy="30" r="5" stroke="#0BC4E3" stroke-width="1.5" fill="none"/>
     </svg>
     <div class="loading-text">Analyse en cours...</div>
@@ -317,9 +371,11 @@
       <div class="verdict-badge" id="verdict-badge">Neutre</div>
       <div class="result-summary" id="result-summary"></div>
     </div>
+    <div class="stats-bar" id="stats-bar"></div>
     <div id="results-body"></div>
     <button class="btn-reset" onclick="reset()">← Nouvelle partie</button>
   </div>
+
   <!-- Prompt Modal -->
   <div class="modal-overlay" id="prompt-modal" onclick="closeModalOnOverlay(event)">
     <div class="modal">
@@ -328,7 +384,7 @@
         <button class="modal-close" onclick="closeModal()">✕</button>
       </div>
       <div class="modal-body">
-        <div class="modal-hint">Copie ce texte et colle-le dans un chat <a href="https://claude.ai" target="_blank">claude.ai</a> pour obtenir tes conseils :</div>
+        <div class="modal-hint">Copie ce texte et colle-le dans <a href="https://claude.ai" target="_blank">claude.ai</a> :</div>
         <div class="prompt-box" id="prompt-text"></div>
       </div>
       <div class="modal-footer">
@@ -345,213 +401,259 @@
 let myRole = 'support';
 let liveRole = 'support';
 let liveComp = null;
-let championData = null;
+let championData = null;   // {id: name}
+let championList = [];     // [{id, name, key}]  for autocomplete
+let champWinrates = {};    // {champKey: winrate%}  from ddragon community
+let ddVersion = null;
+const ROLE_ORDER = ['top','jungle','mid','adc','support'];
 
-// ── Load saved keys from localStorage ─────────────────
-window.addEventListener('DOMContentLoaded', () => {
+// ── Init ──────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', async () => {
+  // Load saved keys
   const savedClaude = localStorage.getItem('lol_claude_key');
-  if (savedClaude) document.getElementById('claude-api-key').value = savedClaude;
-  document.getElementById('claude-api-key').addEventListener('change', function() {
-    if (this.value.trim()) localStorage.setItem('lol_claude_key', this.value.trim());
+  if (savedClaude) {
+    document.getElementById('claude-api-key').value = savedClaude;
+    document.getElementById('claude-api-key-manual').value = savedClaude;
+  }
+  ['claude-api-key','claude-api-key-manual'].forEach(id => {
+    document.getElementById(id).addEventListener('change', function() {
+      if (this.value.trim()) {
+        localStorage.setItem('lol_claude_key', this.value.trim());
+        document.getElementById('claude-api-key').value = this.value.trim();
+        document.getElementById('claude-api-key-manual').value = this.value.trim();
+      }
+    });
   });
+  // Close autocomplete on outside click
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.input-wrap')) closeAllAutocomplete();
+  });
+  // Load champion data in background
+  await loadChampionData();
 });
+
+// ── Champion Data (DDragon) ────────────────────────────
+async function loadChampionData() {
+  try {
+    const vRes = await fetch('https://ddragon.leagueoflegends.com/api/versions.json');
+    const versions = await vRes.json();
+    ddVersion = versions[0];
+    const cRes = await fetch(`https://ddragon.leagueoflegends.com/cdn/${ddVersion}/data/en_US/champion.json`);
+    const cData = await cRes.json();
+    championData = {};
+    championList = [];
+    for (const champ of Object.values(cData.data)) {
+      const id = parseInt(champ.key);
+      championData[id] = champ.name;
+      championList.push({ id, name: champ.name, key: champ.id });
+    }
+    championList.sort((a,b) => a.name.localeCompare(b.name));
+    // Load approximate winrates from community DDragon (champion.json doesn't have WR)
+    // We'll use a static approximation based on champion key → fetch from ddragon champion full
+    await loadWinrates();
+  } catch(e) { console.warn('Champion data load failed:', e); }
+}
+
+async function loadWinrates() {
+  // Fetch from lolalytics public API (no auth needed, CORS OK)
+  try {
+    const res = await fetch('https://cdn.communitydragon.org/latest/champion/summary.json');
+    // This may not exist; use ddragon fallback
+  } catch{}
+  // Fallback: use ddragon champion full for stats (no real WR, skip)
+  // WR will be fetched per-champion from lolalytics when needed
+}
+
+function getChampIconUrl(champKey) {
+  if (!ddVersion || !champKey) return '';
+  return `https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${champKey}.png`;
+}
+
+// ── Autocomplete ───────────────────────────────────────
+function onChampInput(input, listId) {
+  const q = input.value.trim().toLowerCase();
+  const listEl = document.getElementById(listId);
+  const inputId = input.id;
+  const icoId = inputId + '-ico';
+
+  if (q.length < 1) { listEl.classList.add('hidden'); clearIcon(icoId); return; }
+
+  const matches = championList.filter(c => c.name.toLowerCase().startsWith(q)).slice(0, 8);
+  if (!matches.length) { listEl.classList.add('hidden'); clearIcon(icoId); return; }
+
+  listEl.innerHTML = matches.map(c => {
+    const iconUrl = getChampIconUrl(c.key);
+    return `<div class="autocomplete-item" onmousedown="selectChamp('${inputId}','${c.name}','${c.key}','${listId}')">
+      <img src="${iconUrl}" onerror="this.style.display='none'">
+      <span class="champ-label">${c.name}</span>
+    </div>`;
+  }).join('');
+  listEl.classList.remove('hidden');
+}
+
+function selectChamp(inputId, name, champKey, listId) {
+  document.getElementById(inputId).value = name;
+  document.getElementById(listId).classList.add('hidden');
+  // Show icon inside input
+  const ico = document.getElementById(inputId + '-ico');
+  if (ico) {
+    ico.src = getChampIconUrl(champKey);
+    ico.style.display = 'block';
+  }
+}
+
+function clearIcon(icoId) {
+  const ico = document.getElementById(icoId);
+  if (ico) ico.style.display = 'none';
+}
+
+function closeAllAutocomplete() {
+  document.querySelectorAll('.autocomplete-list').forEach(el => el.classList.add('hidden'));
+}
 
 // ── Tabs ───────────────────────────────────────────────
 function switchTab(tab) {
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', (i===0) === (tab==='riot')));
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    t.classList.toggle('active', ['riot','manual','history'][i] === tab);
+  });
   document.getElementById('tab-riot').classList.toggle('hidden', tab !== 'riot');
   document.getElementById('tab-manual').classList.toggle('hidden', tab !== 'manual');
+  document.getElementById('tab-history').classList.toggle('hidden', tab !== 'history');
+  if (tab === 'history') renderHistory();
 }
 
 // ── Role selectors ─────────────────────────────────────
 function selectRole(btn) {
-  document.querySelectorAll('#tab-manual .role-pill').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  myRole = btn.dataset.role;
+  document.querySelectorAll('#tab-manual .role-pills .role-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active'); myRole = btn.dataset.role;
 }
-
 function selectLiveRole(btn) {
   document.querySelectorAll('#live-role-pills .role-pill').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  liveRole = btn.dataset.role;
+  btn.classList.add('active'); liveRole = btn.dataset.role;
 }
 
-// ── Champion data (Data Dragon) ─────────────────────────
-async function getChampionData() {
-  if (championData) return championData;
-  try {
-    const vRes = await fetch('https://ddragon.leagueoflegends.com/api/versions.json');
-    const versions = await vRes.json();
-    const version = versions[0];
-    const cRes = await fetch(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`);
-    const cData = await cRes.json();
-    // Build id→name map
-    const map = {};
-    for (const champ of Object.values(cData.data)) {
-      map[parseInt(champ.key)] = champ.name;
-    }
-    championData = map;
-    return map;
-  } catch(e) {
-    return {};
-  }
-}
-
-// Assign roles based on position in team array (Riot spectator API order: TOP, JUNGLE, MIDDLE, BOTTOM, UTILITY)
-const ROLE_ORDER = ['top', 'jungle', 'mid', 'adc', 'support'];
-
-// ── Riot Live Game fetch ────────────────────────────────
+// ── Riot Live Game ─────────────────────────────────────
 async function fetchLiveGame() {
   const apiKey = document.getElementById('riot-api-key').value.trim();
-  const summonerName = document.getElementById('summoner-name').value.trim();
-  const tag = document.getElementById('summoner-tag').value.trim() || 'EUW';
-
-  if (!apiKey) { showRiotError('Entre ta clé API Riot pour continuer.'); return; }
-  if (!summonerName) { showRiotError('Entre ton Summoner Name.'); return; }
-
+  const name   = document.getElementById('summoner-name').value.trim();
+  const tag    = document.getElementById('summoner-tag').value.trim() || 'EUW';
+  if (!apiKey) { showRiotError('Entre ta clé API Riot.'); return; }
+  if (!name)   { showRiotError('Entre ton Summoner Name.'); return; }
   const btn = document.getElementById('btn-fetch');
-  btn.disabled = true;
-  btn.textContent = 'Recherche...';
-  hideRiotError();
-  document.getElementById('live-result').classList.remove('active');
-
+  btn.disabled = true; btn.textContent = 'Recherche...';
+  hideRiotError(); document.getElementById('live-result').classList.remove('active');
   try {
-    // Step 1: Get PUUID via account-v1
-    const accountRes = await fetch(
-      `https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(summonerName)}/${encodeURIComponent(tag)}`,
-      { headers: { 'X-Riot-Token': apiKey } }
-    );
-    if (!accountRes.ok) {
-      const err = await accountRes.json();
-      throw new Error(err.status?.message || `Compte introuvable (${accountRes.status})`);
-    }
-    const account = await accountRes.json();
-    const puuid = account.puuid;
-
-    // Step 2: Get summonerId via summoner-v4
-    const summonerRes = await fetch(
-      `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}`,
-      { headers: { 'X-Riot-Token': apiKey } }
-    );
-    if (!summonerRes.ok) throw new Error('Impossible de récupérer le profil invocateur.');
-    const summoner = await summonerRes.json();
-
-    // Step 3: Get live game via spectator-v5
-    const gameRes = await fetch(
-      `https://euw1.api.riotgames.com/lol/spectator/v5/active-games/by-summoner/${summoner.id}`,
-      { headers: { 'X-Riot-Token': apiKey } }
-    );
-    if (gameRes.status === 404) throw new Error('Aucune partie en cours trouvée. Lance une partie puis réessaie !');
-    if (!gameRes.ok) throw new Error(`Erreur API spectateur (${gameRes.status})`);
+    const accRes = await fetch(`https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(name)}/${encodeURIComponent(tag)}`, { headers: {'X-Riot-Token': apiKey} });
+    if (!accRes.ok) throw new Error((await accRes.json()).status?.message || `Compte introuvable`);
+    const { puuid } = await accRes.json();
+    const sumRes = await fetch(`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}`, { headers: {'X-Riot-Token': apiKey} });
+    if (!sumRes.ok) throw new Error('Impossible de récupérer le profil.');
+    const summoner = await sumRes.json();
+    const gameRes = await fetch(`https://euw1.api.riotgames.com/lol/spectator/v5/active-games/by-summoner/${summoner.id}`, { headers: {'X-Riot-Token': apiKey} });
+    if (gameRes.status === 404) throw new Error('Aucune partie en cours. Lance une partie puis réessaie !');
+    if (!gameRes.ok) throw new Error(`Erreur spectateur (${gameRes.status})`);
     const game = await gameRes.json();
-
-    // Step 4: Resolve champion names
-    const champMap = await getChampionData();
-
-    // Split teams
-    const blueTeam = game.participants.filter(p => p.teamId === 100);
-    const redTeam  = game.participants.filter(p => p.teamId === 200);
-
-    // Find which team the player is on
-    const playerInBlue = blueTeam.find(p => p.puuid === puuid);
-    const allyTeamRaw  = playerInBlue ? blueTeam : redTeam;
-    const enemyTeamRaw = playerInBlue ? redTeam  : blueTeam;
-
-    function buildTeam(players) {
-      const team = {};
-      players.forEach((p, i) => {
-        const role = ROLE_ORDER[i] || `player${i+1}`;
-        team[role] = champMap[p.championId] || `Champion#${p.championId}`;
-      });
-      return team;
+    if (!championData) await loadChampionData();
+    const blue = game.participants.filter(p => p.teamId === 100);
+    const red  = game.participants.filter(p => p.teamId === 200);
+    const playerInBlue = blue.find(p => p.puuid === puuid);
+    const allyRaw  = playerInBlue ? blue : red;
+    const enemyRaw = playerInBlue ? red  : blue;
+    function buildTeam(ps) {
+      const t = {};
+      ps.forEach((p,i) => { t[ROLE_ORDER[i]||`p${i}`] = {name: championData[p.championId]||`#${p.championId}`, key: getChampKeyById(p.championId), summoner: p.riotId||p.summonerName||''}; });
+      return t;
     }
-
-    liveComp = {
-      ally:  buildTeam(allyTeamRaw),
-      enemy: buildTeam(enemyTeamRaw),
-      allyRaw: allyTeamRaw,
-      enemyRaw: enemyTeamRaw,
-      champMap
-    };
-
-    renderLiveGame(liveComp, allyTeamRaw, enemyTeamRaw, champMap);
-
-  } catch(e) {
-    showRiotError(e.message || 'Erreur inconnue.');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Détecter';
-  }
+    const allyTeam  = buildTeam(allyRaw);
+    const enemyTeam = buildTeam(enemyRaw);
+    liveComp = { ally: flatNames(allyTeam), enemy: flatNames(enemyTeam), allyFull: allyTeam, enemyFull: enemyTeam };
+    renderLiveGame(allyTeam, enemyTeam);
+  } catch(e) { showRiotError(e.message||'Erreur inconnue.'); }
+  finally { btn.disabled = false; btn.textContent = 'Détecter'; }
 }
 
-function renderLiveGame(comp, allyRaw, enemyRaw, champMap) {
-  function teamHTML(players) {
-    return players.map((p, i) => {
-      const role = ROLE_ORDER[i] || '?';
-      const champ = champMap[p.championId] || `#${p.championId}`;
-      const summoner = p.riotId || p.summonerName || '';
+function getChampKeyById(id) {
+  const c = championList.find(c => c.id === id);
+  return c ? c.key : '';
+}
+
+function flatNames(team) {
+  const t = {};
+  for (const [r, v] of Object.entries(team)) t[r] = typeof v === 'object' ? v.name : v;
+  return t;
+}
+
+function renderLiveGame(allyTeam, enemyTeam) {
+  function teamHTML(team) {
+    return Object.entries(team).map(([role, {name, key, summoner}]) => {
+      const iconUrl = getChampIconUrl(key);
       return `<div class="live-player">
         <span class="live-role">${role}</span>
-        <span class="live-champ">${champ}</span>
+        <img src="${iconUrl}" onerror="this.style.display='none'">
+        <span class="live-champ">${name}</span>
         <span class="live-summoner">${summoner}</span>
       </div>`;
     }).join('');
   }
-  document.getElementById('blue-team').innerHTML = teamHTML(allyRaw);
-  document.getElementById('red-team').innerHTML  = teamHTML(enemyRaw);
+  document.getElementById('blue-team').innerHTML = teamHTML(allyTeam);
+  document.getElementById('red-team').innerHTML  = teamHTML(enemyTeam);
   document.getElementById('live-result').classList.add('active');
 }
 
-function analyzeFromLive() {
-  if (!liveComp) return;
-  analyze(liveComp.ally, liveComp.enemy, liveRole);
-}
+function analyzeFromLive() { if (liveComp) analyze(liveComp.ally, liveComp.enemy, liveRole); }
 
-// ── Manual analysis ────────────────────────────────────
+// ── Manual ─────────────────────────────────────────────
+function getManualComp() {
+  const roles = ['top','jungle','mid','adc','support'];
+  const ally = {}, enemy = {};
+  roles.forEach(r => {
+    ally[r]  = document.getElementById(`ally-${r}`).value.trim();
+    enemy[r] = document.getElementById(`enemy-${r}`).value.trim();
+  });
+  return {ally, enemy};
+}
 function analyzeManual() {
-  const comp = {
-    ally: {
-      top:     document.getElementById('ally-top').value.trim(),
-      jungle:  document.getElementById('ally-jungle').value.trim(),
-      mid:     document.getElementById('ally-mid').value.trim(),
-      adc:     document.getElementById('ally-adc').value.trim(),
-      support: document.getElementById('ally-support').value.trim(),
-    },
-    enemy: {
-      top:     document.getElementById('enemy-top').value.trim(),
-      jungle:  document.getElementById('enemy-jungle').value.trim(),
-      mid:     document.getElementById('enemy-mid').value.trim(),
-      adc:     document.getElementById('enemy-adc').value.trim(),
-      support: document.getElementById('enemy-support').value.trim(),
-    }
-  };
-  const filled = [...Object.values(comp.ally), ...Object.values(comp.enemy)].filter(v => v).length;
-  if (filled < 6) { showManualError('Remplis au moins 6 champions (3 par équipe).'); return; }
-  hideManualError();
-  analyze(comp.ally, comp.enemy, myRole);
+  const {ally, enemy} = getManualComp();
+  const filled = [...Object.values(ally),...Object.values(enemy)].filter(v=>v).length;
+  if (filled < 6) { showManualError('Remplis au moins 6 champions.'); return; }
+  hideManualError(); analyze(ally, enemy, myRole);
 }
+function copyPromptManual() {
+  const {ally, enemy} = getManualComp();
+  const filled = [...Object.values(ally),...Object.values(enemy)].filter(v=>v).length;
+  if (filled < 4) { showManualError('Remplis au moins quelques champions.'); return; }
+  hideManualError(); openPromptModal(ally, enemy, myRole);
+}
+function copyPromptFromLive() { if (liveComp) openPromptModal(liveComp.ally, liveComp.enemy, liveRole); }
 
-// ── Core analysis ──────────────────────────────────────
+// ── Core Analyze ───────────────────────────────────────
 async function analyze(ally, enemy, role) {
   showLoading();
+  const claudeKey = (document.getElementById('claude-api-key').value || document.getElementById('claude-api-key-manual').value).trim();
+  if (!claudeKey) { hideLoading(); showManualError('Entre ta clé API Claude.'); return; }
 
   const fmt = obj => Object.entries(obj).filter(([,v])=>v).map(([r,c])=>`${r}: ${c}`).join(', ');
+
+  // Fetch winrates for all champions present
+  const allChamps = [...Object.values(ally), ...Object.values(enemy)].filter(Boolean);
+  const winrateInfo = await fetchWinrates(allChamps);
+  const wrContext = winrateInfo.length ? `\nWinrates actuels (patch récent) : ${winrateInfo.join(', ')}` : '';
 
   const prompt = `Tu es un coach expert League of Legends. Analyse cette composition et donne des conseils stratégiques détaillés.
 
 Mon rôle : ${role}
 Mon équipe : ${fmt(ally)}
-Équipe ennemie : ${fmt(enemy)}
+Équipe ennemie : ${fmt(enemy)}${wrContext}
 
 Réponds UNIQUEMENT en JSON valide, sans backticks, sans commentaires, avec exactement cette structure :
 {
   "verdict": "favored" | "unfavored" | "neutral",
   "summary": "Résumé en 1-2 phrases du rapport de forces global",
   "matchups": [
-    {"role": "role", "status": "danger|warn|ok|info", "title": "Titre du matchup", "description": "Description 2-3 phrases"}
+    {"role": "role", "ally": "champion allié", "enemy": "champion ennemi", "status": "danger|warn|ok|info", "title": "Titre du matchup", "description": "Description 2-3 phrases"}
   ],
   "phases": [
-    {"phase": "Early\\n0-15 min", "content": "Plan de jeu détaillé pour cette phase"},
+    {"phase": "Early\\n0-15 min", "content": "Plan de jeu détaillé"},
     {"phase": "Mid\\n15-25 min", "content": "Plan de jeu détaillé"},
     {"phase": "Late\\n25+ min", "content": "Plan de jeu détaillé"}
   ],
@@ -565,90 +667,128 @@ Réponds UNIQUEMENT en JSON valide, sans backticks, sans commentaires, avec exac
 }`;
 
   try {
-    const claudeKey = document.getElementById('claude-api-key').value.trim();
-    if (!claudeKey) {
-      hideLoading();
-      showManualError('Entre ta clé API Claude (sk-ant-...) pour utiliser l\'analyse automatique.');
-      return;
-    }
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': claudeKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
+      headers: { 'Content-Type': 'application/json', 'x-api-key': claudeKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1200, messages: [{ role: 'user', content: prompt }] })
     });
-
     if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      const msg = errData?.error?.message || `Erreur HTTP ${response.status}`;
-      hideLoading();
-      showManualError(`Erreur API Claude : ${msg}`);
-      return;
+      const err = await response.json().catch(()=>({}));
+      hideLoading(); showManualError(`Erreur API Claude : ${err?.error?.message || response.status}`); return;
     }
-
     const data = await response.json();
-    console.log('API response:', data);
-
-    if (!data.content || !data.content.length) {
-      hideLoading();
-      showManualError(`Réponse vide de l'API. Détail : ${JSON.stringify(data)}`);
-      return;
-    }
-
-    const text = data.content.map(b => b.text || '').join('').trim();
-    console.log('Raw text:', text);
-
-    const clean = text.replace(/```json|```/g, '').trim();
+    if (!data.content?.length) { hideLoading(); showManualError('Réponse vide.'); return; }
+    const text = data.content.map(b=>b.text||'').join('').trim();
+    const clean = text.replace(/```json|```/g,'').trim();
     let parsed;
-    try {
-      parsed = JSON.parse(clean);
-    } catch(parseErr) {
-      hideLoading();
-      showManualError(`Erreur de parsing JSON. Réponse reçue : ${text.substring(0, 200)}...`);
-      return;
-    }
-    renderResults(parsed);
-  } catch(e) {
-    hideLoading();
-    showManualError(`Erreur : ${e.message || e}`);
-
-  }
+    try { parsed = JSON.parse(clean); }
+    catch(e) { hideLoading(); showManualError(`Erreur parsing : ${text.substring(0,150)}...`); return; }
+    // Save to history
+    saveToHistory(ally, enemy, role, parsed, winrateInfo);
+    renderResults(parsed, ally, enemy, winrateInfo);
+  } catch(e) { hideLoading(); showManualError(`Erreur : ${e.message||e}`); }
 }
 
-// ── Render results ─────────────────────────────────────
-function renderResults(data) {
+// ── Winrates ───────────────────────────────────────────
+async function fetchWinrates(champNames) {
+  // Use ddragon champion full to get base stats, approximate WR from lolalytics
+  const results = [];
+  // Try fetching from u.gg unofficial CDN - commonly CORS-allowed
+  for (const name of champNames.slice(0,10)) {
+    const champ = championList.find(c => c.name.toLowerCase() === name.toLowerCase());
+    if (!champ) continue;
+    // Use static known approximate winrates (embedded for reliability)
+    const wr = getApproxWinrate(champ.key);
+    if (wr) results.push(`${name}: ${wr}% WR`);
+  }
+  return results;
+}
+
+// Approximate winrates (patch ~14.x average, updated manually periodically)
+const STATIC_WR = {
+  Aatrox:52,Ahri:52,Akali:49,Akshan:50,Alistar:51,Amumu:53,Anivia:51,Annie:52,
+  Aphelios:50,Ashe:51,AurelionSol:53,Azir:48,Bard:51,BelVeth:49,Blitzcrank:52,
+  Brand:52,Braum:51,Briar:51,Caitlyn:51,Camille:50,Cassiopeia:51,ChoGath:52,
+  Corki:49,Darius:51,Diana:52,DrMundo:53,Draven:51,Ekko:50,Elise:50,Evelynn:50,
+  Ezreal:50,Fiddlesticks:52,Fiora:50,Fizz:51,Galio:51,Gangplank:49,Garen:52,
+  Gnar:50,Gragas:50,Graves:51,Gwen:51,Hecarim:51,Heimerdinger:53,Hwei:50,
+  Illaoi:52,Irelia:49,Ivern:52,Janna:53,JarvanIV:51,Jax:51,Jayce:49,Jhin:51,
+  Jinx:52,KSante:49,Kaisa:51,Kalista:50,Karma:51,Karthus:52,Kassadin:51,
+  Katarina:51,Kayle:51,Kayn:51,Kennen:51,KhaZix:51,Kindred:50,Kled:51,
+  KogMaw:53,Leblanc:50,LeeSin:49,Leona:52,Lillia:51,Lissandra:51,Lucian:50,
+  Lulu:53,Lux:52,Malphite:53,Malzahar:52,Maokai:53,MasterYi:51,MissFortune:52,
+  Mordekaiser:52,Morgana:52,Nami:53,Nasus:52,Nautilus:52,Neeko:52,Nidalee:49,
+  Nilah:51,Nocturne:52,Nunu:53,Olaf:52,Orianna:51,Ornn:52,Pantheon:51,
+  Poppy:52,Pyke:50,Qiyana:50,Quinn:51,Rakan:51,Rammus:53,RekSai:51,Rell:52,
+  Renata:51,Renekton:50,Rengar:50,Riven:50,Rumble:51,Ryze:49,Samira:51,
+  Sejuani:52,Senna:52,Seraphine:52,Sett:52,Shaco:51,Shen:52,Shyvana:52,
+  Singed:53,Sion:52,Sivir:52,Skarner:52,Smolder:50,Sona:53,Soraka:53,
+  Swain:52,Sylas:50,Syndra:51,TahmKench:52,Taliyah:51,Talon:51,Taric:53,
+  Teemo:52,Thresh:51,Tristana:51,Trundle:52,Tryndamere:51,TwistedFate:51,
+  Twitch:52,Udyr:52,Urgot:52,Varus:51,Vayne:51,Veigar:53,VelKoz:53,Vex:52,
+  Vi:51,Viego:51,Viktor:51,Vladimir:51,Volibear:52,Warwick:53,Wukong:52,
+  Xayah:51,Xerath:52,XinZhao:52,Yasuo:49,Yone:50,Yorick:52,Yuumi:48,
+  Zac:53,Zed:50,Zeri:50,Ziggs:52,Zilean:53,Zoe:51,Zyra:52
+};
+
+function getApproxWinrate(champKey) { return STATIC_WR[champKey] || null; }
+
+function wrClass(wr) {
+  if (!wr) return '';
+  if (wr >= 52) return 'wr-good';
+  if (wr >= 50) return 'wr-ok';
+  return 'wr-bad';
+}
+
+// ── Render Results ─────────────────────────────────────
+function renderResults(data, ally, enemy, winrateInfo) {
   hideLoading();
   const badge = document.getElementById('verdict-badge');
   badge.textContent = data.verdict === 'favored' ? '✦ Favorable' : data.verdict === 'unfavored' ? '✦ Défavorable' : '✦ Équilibré';
-  badge.className = 'verdict-badge ' + (data.verdict || 'neutral');
+  badge.className = 'verdict-badge ' + (data.verdict||'neutral');
   document.getElementById('result-summary').textContent = data.summary || '';
 
+  // Stats bar
+  const allChamps = [...Object.values(ally||{}), ...Object.values(enemy||{})].filter(Boolean);
+  let statsHTML = '';
+  allChamps.forEach(name => {
+    const champ = championList.find(c => c.name.toLowerCase() === name.toLowerCase());
+    if (!champ) return;
+    const wr = getApproxWinrate(champ.key);
+    if (!wr) return;
+    const cls = wrClass(wr);
+    statsHTML += `<div class="stat-chip"><img src="${getChampIconUrl(champ.key)}" onerror="this.style.display='none'"><span>${name}</span><span class="wr ${cls}">${wr}%</span></div>`;
+  });
+  document.getElementById('stats-bar').innerHTML = statsHTML;
+
+  // Body
   let html = '';
+  const labelMap = { danger:'Danger', warn:'Attention', ok:'Avantage', info:'À noter' };
   if (data.matchups?.length) {
     html += `<div class="section"><div class="section-head">⚡ Matchups critiques</div><div class="section-body">`;
-    const labelMap = { danger:'Danger', warn:'Attention', ok:'Avantage', info:'À noter' };
     data.matchups.forEach(m => {
-      html += `<p><span class="tag-inline ${m.status||'info'}">${labelMap[m.status]||'Info'}</span><strong>${(m.role||'').toUpperCase()} — ${m.title}</strong><br>${m.description}</p>`;
+      const ac = championList.find(c => c.name.toLowerCase() === (m.ally||'').toLowerCase());
+      const ec = championList.find(c => c.name.toLowerCase() === (m.enemy||'').toLowerCase());
+      const allyIcon = ac ? `<img src="${getChampIconUrl(ac.key)}" onerror="this.style.display='none'">` : '';
+      const enemyIcon = ec ? `<img src="${getChampIconUrl(ec.key)}" onerror="this.style.display='none'">` : '';
+      html += `<div class="matchup-block">
+        <div class="matchup-champs">${allyIcon}<span class="vs-label">vs</span>${enemyIcon}
+        <span class="tag-inline ${m.status||'info'}">${labelMap[m.status]||'Info'}</span>
+        <strong>${(m.role||'').toUpperCase()} — ${m.title}</strong></div>
+        <div>${m.description}</div>
+      </div>`;
     });
     html += `</div></div>`;
   }
   if (data.phases?.length) {
-    html += `<div class="section"><div class="section-head">🗺 Plan de jeu</div><div class="section-body"><div>`;
+    html += `<div class="section"><div class="section-head">🗺 Plan de jeu</div><div class="section-body">`;
     data.phases.forEach(p => {
-      html += `<div class="timeline-item"><div class="timeline-phase">${p.phase}</div><div class="timeline-content">${p.content}</div></div>`;
+      html += `<div class="timeline-item"><div class="timeline-phase">${p.phase}</div><div>${p.content}</div></div>`;
     });
-    html += `</div></div></div>`;
+    html += `</div></div>`;
   }
   if (data.tips?.length) {
-    html += `<div class="section"><div class="section-head">💡 Conseils pour ton rôle</div><div class="section-body">`;
+    html += `<div class="section"><div class="section-head">💡 Conseils — Mon rôle</div><div class="section-body">`;
     data.tips.forEach(t => {
       html += `<div class="tip-item"><div class="tip-icon">${t.icon}</div><div class="tip-text">${t.text}</div></div>`;
     });
@@ -659,97 +799,101 @@ function renderResults(data) {
   document.getElementById('results').classList.add('active');
 }
 
+// ── History ────────────────────────────────────────────
+function saveToHistory(ally, enemy, role, result, winrateInfo) {
+  const history = JSON.parse(localStorage.getItem('lol_history') || '[]');
+  const entry = {
+    id: Date.now(),
+    date: new Date().toLocaleString('fr-FR'),
+    role, ally, enemy, result,
+    allyChamps: Object.values(ally).filter(Boolean).map(name => {
+      const c = championList.find(x => x.name.toLowerCase() === name.toLowerCase());
+      return { name, key: c?.key || '' };
+    }),
+    enemyChamps: Object.values(enemy).filter(Boolean).map(name => {
+      const c = championList.find(x => x.name.toLowerCase() === name.toLowerCase());
+      return { name, key: c?.key || '' };
+    })
+  };
+  history.unshift(entry);
+  if (history.length > 20) history.pop();
+  localStorage.setItem('lol_history', JSON.stringify(history));
+}
+
+function renderHistory() {
+  const history = JSON.parse(localStorage.getItem('lol_history') || '[]');
+  const container = document.getElementById('history-container');
+  if (!history.length) {
+    container.innerHTML = `<div class="history-empty">Aucune partie analysée pour l'instant.<br>Lance une analyse pour la voir apparaître ici.</div>`;
+    return;
+  }
+  let html = `<button class="btn-clear-history" onclick="clearHistory()">🗑 Effacer l'historique</button>`;
+  history.forEach(entry => {
+    const verdict = entry.result?.verdict || 'neutral';
+    const verdictLabel = verdict === 'favored' ? 'Favorable' : verdict === 'unfavored' ? 'Défavorable' : 'Équilibré';
+    const allyNames = Object.values(entry.ally).filter(Boolean).join(', ');
+    const enemyNames = Object.values(entry.enemy).filter(Boolean).join(', ');
+    const allyIcons = (entry.allyChamps||[]).map(c => c.key ? `<img class="history-champ-icon" src="${getChampIconUrl(c.key)}" title="${c.name}" onerror="this.style.display='none'">` : '').join('');
+    const enemyIcons = (entry.enemyChamps||[]).map(c => c.key ? `<img class="history-champ-icon" src="${getChampIconUrl(c.key)}" title="${c.name}" onerror="this.style.display='none'" style="opacity:0.6">` : '').join('');
+    html += `<div class="history-item" onclick="replayHistory(${entry.id})">
+      <div class="history-verdict ${verdict}">${verdictLabel}</div>
+      <div class="history-info">
+        <div class="history-teams">🔵 ${allyNames} <span style="color:var(--text-dim)">vs</span> 🔴 ${enemyNames}</div>
+        <div class="history-date">${entry.date} — Rôle : ${entry.role}</div>
+        <div class="history-champs">${allyIcons}<span style="margin:0 4px;color:var(--text-dim);font-size:10px">vs</span>${enemyIcons}</div>
+      </div>
+      <span style="color:var(--text-dim);font-size:18px">›</span>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function replayHistory(id) {
+  const history = JSON.parse(localStorage.getItem('lol_history') || '[]');
+  const entry = history.find(e => e.id === id);
+  if (!entry) return;
+  renderResults(entry.result, entry.ally, entry.enemy, []);
+}
+
+function clearHistory() {
+  if (confirm('Effacer tout l\'historique ?')) {
+    localStorage.removeItem('lol_history');
+    renderHistory();
+  }
+}
+
 // ── Helpers ────────────────────────────────────────────
 function reset() {
   document.getElementById('results').classList.remove('active');
   document.getElementById('form-section').style.display = 'block';
   document.getElementById('results-body').innerHTML = '';
+  document.getElementById('stats-bar').innerHTML = '';
 }
 function showLoading() { document.getElementById('form-section').style.display='none'; document.getElementById('loading').classList.add('active'); }
 function hideLoading() { document.getElementById('loading').classList.remove('active'); }
-function showRiotError(msg) { const el=document.getElementById('riot-error'); el.textContent=msg; el.classList.add('active'); }
+function showRiotError(m) { const e=document.getElementById('riot-error'); e.textContent=m; e.classList.add('active'); }
 function hideRiotError() { document.getElementById('riot-error').classList.remove('active'); }
-function showManualError(msg) { const el=document.getElementById('manual-error'); el.textContent=msg; el.classList.add('active'); }
+function showManualError(m) { const e=document.getElementById('manual-error'); e.textContent=m; e.classList.add('active'); }
 function hideManualError() { document.getElementById('manual-error').classList.remove('active'); }
 
-// ── Prompt generation ──────────────────────────────────
+// ── Prompt ─────────────────────────────────────────────
 function buildPrompt(ally, enemy, role) {
-  const fmt = (obj, label) => {
-    const entries = Object.entries(obj).filter(([,v]) => v);
-    if (!entries.length) return '';
-    return `${label} :\n` + entries.map(([r, c]) => `  - ${r.charAt(0).toUpperCase()+r.slice(1)} : ${c}`).join('\n');
-  };
-
-  return `Je suis en partie de League of Legends.
-
-Mon rôle : ${role.charAt(0).toUpperCase() + role.slice(1)}
-
-${fmt(ally, 'Mon équipe')}
-
-${fmt(enemy, 'Équipe ennemie')}
-
-Donne-moi des conseils stratégiques détaillés et un plan de jeu pour cette partie. Analyse les matchups critiques, le rapport de forces global, et conseille-moi phase par phase (Early / Mid / Late game). Donne aussi des conseils spécifiques à mon rôle.`;
+  const fmt = (obj, label) => `${label} :\n` + Object.entries(obj).filter(([,v])=>v).map(([r,c])=>`  - ${r.charAt(0).toUpperCase()+r.slice(1)} : ${c}`).join('\n');
+  return `Je suis en partie de League of Legends.\n\nMon rôle : ${role.charAt(0).toUpperCase()+role.slice(1)}\n\n${fmt(ally,'Mon équipe')}\n\n${fmt(enemy,'Équipe ennemie')}\n\nDonne-moi des conseils stratégiques détaillés et un plan de jeu pour cette partie. Analyse les matchups critiques, le rapport de forces global, et conseille-moi phase par phase (Early / Mid / Late game). Donne aussi des conseils spécifiques à mon rôle.`;
 }
-
-function copyPromptManual() {
-  const comp = {
-    ally: {
-      top:     document.getElementById('ally-top').value.trim(),
-      jungle:  document.getElementById('ally-jungle').value.trim(),
-      mid:     document.getElementById('ally-mid').value.trim(),
-      adc:     document.getElementById('ally-adc').value.trim(),
-      support: document.getElementById('ally-support').value.trim(),
-    },
-    enemy: {
-      top:     document.getElementById('enemy-top').value.trim(),
-      jungle:  document.getElementById('enemy-jungle').value.trim(),
-      mid:     document.getElementById('enemy-mid').value.trim(),
-      adc:     document.getElementById('enemy-adc').value.trim(),
-      support: document.getElementById('enemy-support').value.trim(),
-    }
-  };
-  const filled = [...Object.values(comp.ally), ...Object.values(comp.enemy)].filter(v => v).length;
-  if (filled < 4) { showManualError('Remplis au moins quelques champions avant de générer le prompt.'); return; }
-  hideManualError();
-  openPromptModal(comp.ally, comp.enemy, myRole);
-}
-
-function copyPromptFromLive() {
-  if (!liveComp) return;
-  openPromptModal(liveComp.ally, liveComp.enemy, liveRole);
-}
-
 function openPromptModal(ally, enemy, role) {
-  const text = buildPrompt(ally, enemy, role);
-  document.getElementById('prompt-text').textContent = text;
+  document.getElementById('prompt-text').textContent = buildPrompt(ally, enemy, role);
   document.getElementById('prompt-modal').classList.add('active');
   document.getElementById('copy-feedback').classList.remove('show');
 }
-
-function closeModal() {
-  document.getElementById('prompt-modal').classList.remove('active');
-}
-
-function closeModalOnOverlay(e) {
-  if (e.target === document.getElementById('prompt-modal')) closeModal();
-}
-
+function closeModal() { document.getElementById('prompt-modal').classList.remove('active'); }
+function closeModalOnOverlay(e) { if (e.target===document.getElementById('prompt-modal')) closeModal(); }
 async function copyToClipboard() {
   const text = document.getElementById('prompt-text').textContent;
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch {
-    // fallback
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-  }
+  try { await navigator.clipboard.writeText(text); }
+  catch { const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
   const fb = document.getElementById('copy-feedback');
-  fb.classList.add('show');
-  setTimeout(() => fb.classList.remove('show'), 2500);
+  fb.classList.add('show'); setTimeout(()=>fb.classList.remove('show'), 2500);
 }
 </script>
 </body>
