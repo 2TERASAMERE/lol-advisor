@@ -198,6 +198,44 @@
   .open-claude-btn { margin-left: auto; background: transparent; border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim); font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
   .open-claude-btn:hover { border-color: var(--border-bright); color: var(--text); }
 
+  /* PERSONAL TIPS BOX */
+  .personal-tips-header { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, rgba(76,227,138,0.08), rgba(76,227,138,0.03)); border: 1.5px solid rgba(76,227,138,0.35); border-bottom: none; border-radius: 8px 8px 0 0; padding: 12px 18px; font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; color: var(--green); text-transform: uppercase; }
+  .personal-tips-sub { font-family: 'Rajdhani', sans-serif; font-size: 11px; color: rgba(76,227,138,0.6); letter-spacing: 0.05em; text-transform: none; font-weight: 400; }
+  .personal-tips-body { background: rgba(76,227,138,0.04); border: 1.5px solid rgba(76,227,138,0.35); border-top: none; border-radius: 0 0 8px 8px; padding: 14px 18px; }
+  .personal-tip-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid rgba(76,227,138,0.1); }
+  .personal-tip-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .personal-tip-item:first-child { padding-top: 0; }
+  .personal-tip-icon { width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid rgba(76,227,138,0.4); flex-shrink: 0; }
+  .personal-tip-champ { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .personal-tip-tag { display: inline-block; font-size: 9px; font-family: 'Orbitron', monospace; padding: 1px 6px; border-radius: 2px; margin-left: 6px; vertical-align: middle; }
+  .personal-tip-tag.ally { background: rgba(11,196,227,0.12); border: 1px solid rgba(11,196,227,0.3); color: var(--blue); }
+  .personal-tip-tag.enemy { background: rgba(227,76,76,0.12); border: 1px solid rgba(227,76,76,0.3); color: var(--red); }
+  .personal-tip-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+
+  /* IA SEPARATOR */
+  .ia-separator { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .ia-separator::before, .ia-separator::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  #ia-label-badge { font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; color: var(--text-dim); text-transform: uppercase; white-space: nowrap; }
+
+  /* MYTIPS LIST */
+  .mytip-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 12px; }
+  .mytip-card img { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); flex-shrink: 0; }
+  .mytip-card-body { flex: 1; min-width: 0; }
+  .mytip-card-champ { font-family: 'Orbitron', monospace; font-size: 10px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+  .mytip-card-text { font-size: 13px; color: var(--text); line-height: 1.6; }
+  .mytip-card-actions { display: flex; gap: 8px; margin-top: 8px; }
+  .btn-tip-del { background: transparent; border: 1px solid rgba(227,76,76,0.3); border-radius: 3px; color: var(--red); font-size: 11px; padding: 3px 10px; cursor: pointer; font-family: 'Orbitron', monospace; font-weight: 600; letter-spacing: 0.1em; transition: all 0.2s; }
+  .btn-tip-del:hover { background: rgba(227,76,76,0.1); }
+  .tips-empty { text-align: center; padding: 40px 20px; color: var(--text-dim); font-size: 14px; }
+  .ai-selector { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ai-pill { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; color: var(--text-dim); font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 500; padding: 7px 14px; cursor: pointer; transition: all 0.2s; }
+  .ai-pill:hover { border-color: var(--gold-dim); color: var(--text); }
+  .ai-pill.active[data-ai="claude"] { background: rgba(200,155,60,0.15); border-color: var(--gold); color: var(--gold-light); }
+  .ai-pill.active[data-ai="gemini"] { background: rgba(11,196,227,0.12); border-color: var(--blue); color: var(--blue); }
+  .ai-badge { display: inline-flex; align-items: center; gap: 5px; font-family: 'Orbitron', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; padding: 3px 9px; border-radius: 3px; margin-left: 8px; }
+  .ai-badge.claude { background: rgba(200,155,60,0.15); border: 1px solid var(--gold-dim); color: var(--gold); }
+  .ai-badge.gemini { background: rgba(11,196,227,0.12); border: 1px solid rgba(11,196,227,0.4); color: var(--blue); }
+
   @media (max-width: 600px) {
     .form-grid { grid-template-columns: 1fr; }
     .my-role-row { flex-direction: column; align-items: flex-start; }
@@ -229,6 +267,7 @@
       <button class="tab active" onclick="switchTab('riot')">🔴 Détecter ma partie</button>
       <button class="tab" onclick="switchTab('manual')">✏️ Saisie manuelle</button>
       <button class="tab" onclick="switchTab('history')">📜 Historique</button>
+      <button class="tab" onclick="switchTab('mytips')">💡 Mes Astuces</button>
     </div>
 
     <!-- RIOT TAB -->
@@ -354,6 +393,27 @@
     <div id="tab-history" class="hidden">
       <div id="history-container"></div>
     </div>
+
+    <!-- MY TIPS TAB -->
+    <div id="tab-mytips" class="hidden">
+      <div class="riot-panel" style="margin-bottom:16px;">
+        <div class="riot-panel-title" style="color:var(--green);">Ajouter une astuce perso</div>
+        <div class="field-label" style="margin-bottom:6px">Champion</div>
+        <div class="input-wrap" style="margin-bottom:12px">
+          <input type="text" id="tip-champ-input" placeholder="Nom du champion..." autocomplete="off" oninput="onChampInput(this,'tip-champ-ac')">
+          <img class="champ-icon-input" id="tip-champ-input-ico">
+          <div class="autocomplete-list hidden" id="tip-champ-ac"></div>
+        </div>
+        <div class="field-label" style="margin-bottom:6px">Mon astuce</div>
+        <textarea id="tip-text-input" placeholder="Ex: Sur Shen, garde ton taunt pour bloquer le hook de Thresh. Ne l'utilise jamais en engage proactif..." rows="3" style="width:100%;background:var(--bg2);border:1px solid rgba(200,155,60,0.12);border-radius:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:14px;padding:8px 11px;outline:none;resize:vertical;transition:border-color 0.2s;"></textarea>
+        <div style="margin-top:10px;display:flex;gap:10px;align-items:center">
+          <button class="btn-action btn-api" style="flex:1;margin-top:0" onclick="saveTip()">✅ Sauvegarder l'astuce</button>
+          <span id="tip-save-feedback" style="font-size:12px;color:var(--green);opacity:0;transition:opacity 0.3s">✓ Sauvegardée !</span>
+        </div>
+        <div class="error-box" id="tip-error" style="margin-top:10px"></div>
+      </div>
+      <div id="mytips-list"></div>
+    </div>
   </div>
 
   <!-- Loading -->
@@ -372,6 +432,21 @@
       <div class="result-summary" id="result-summary"></div>
     </div>
     <div class="stats-bar" id="stats-bar"></div>
+
+    <!-- MES ASTUCES PERSO — encadré séparé, avant l'analyse IA -->
+    <div id="personal-tips-box" style="display:none;margin-bottom:16px">
+      <div class="personal-tips-header">
+        <span>💡 Mes Astuces Perso</span>
+        <span class="personal-tips-sub">Tes notes sauvegardées pour ces champions</span>
+      </div>
+      <div id="personal-tips-content"></div>
+    </div>
+
+    <!-- SÉPARATEUR -->
+    <div id="ia-section-label" style="display:none" class="ia-separator">
+      <span id="ia-label-badge">🤖 Analyse IA</span>
+    </div>
+
     <div id="results-body"></div>
     <button class="btn-reset" onclick="reset()">← Nouvelle partie</button>
   </div>
@@ -401,34 +476,46 @@
 let myRole = 'support';
 let liveRole = 'support';
 let liveComp = null;
-let championData = null;   // {id: name}
-let championList = [];     // [{id, name, key}]  for autocomplete
-let champWinrates = {};    // {champKey: winrate%}  from ddragon community
+let championData = null;
+let championList = [];
+let champWinrates = {};
 let ddVersion = null;
+let selectedAI = 'claude'; // 'claude' | 'gemini'
 const ROLE_ORDER = ['top','jungle','mid','adc','support'];
 
 // ── Init ──────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', async () => {
   // Load saved keys
   const savedClaude = localStorage.getItem('lol_claude_key');
-  if (savedClaude) {
-    document.getElementById('claude-api-key').value = savedClaude;
-    document.getElementById('claude-api-key-manual').value = savedClaude;
+  const savedGemini = localStorage.getItem('lol_gemini_key');
+  const savedAI     = localStorage.getItem('lol_selected_ai') || 'claude';
+
+  if (savedClaude) { document.getElementById('claude-api-key').value = savedClaude; document.getElementById('claude-api-key-manual').value = savedClaude; }
+  if (savedGemini) { document.getElementById('gemini-api-key').value = savedGemini; document.getElementById('gemini-api-key-manual').value = savedGemini; }
+
+  // Restore AI selection
+  if (savedAI === 'gemini') {
+    selectedAI = 'gemini';
+    ['riot','manual'].forEach(tab => {
+      document.querySelectorAll(`#ai-selector-${tab} .ai-pill`).forEach(p => p.classList.toggle('active', p.dataset.ai === 'gemini'));
+      document.getElementById(`claude-key-block-${tab}`).classList.add('hidden');
+      document.getElementById(`gemini-key-block-${tab}`).classList.remove('hidden');
+    });
   }
+
+  // Save keys on change
   ['claude-api-key','claude-api-key-manual'].forEach(id => {
     document.getElementById(id).addEventListener('change', function() {
-      if (this.value.trim()) {
-        localStorage.setItem('lol_claude_key', this.value.trim());
-        document.getElementById('claude-api-key').value = this.value.trim();
-        document.getElementById('claude-api-key-manual').value = this.value.trim();
-      }
+      if (this.value.trim()) { localStorage.setItem('lol_claude_key', this.value.trim()); document.getElementById('claude-api-key').value = this.value.trim(); document.getElementById('claude-api-key-manual').value = this.value.trim(); }
     });
   });
-  // Close autocomplete on outside click
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.input-wrap')) closeAllAutocomplete();
+  ['gemini-api-key','gemini-api-key-manual'].forEach(id => {
+    document.getElementById(id).addEventListener('change', function() {
+      if (this.value.trim()) { localStorage.setItem('lol_gemini_key', this.value.trim()); document.getElementById('gemini-api-key').value = this.value.trim(); document.getElementById('gemini-api-key-manual').value = this.value.trim(); }
+    });
   });
-  // Load champion data in background
+
+  document.addEventListener('click', e => { if (!e.target.closest('.input-wrap')) closeAllAutocomplete(); });
   await loadChampionData();
 });
 
@@ -513,13 +600,125 @@ function closeAllAutocomplete() {
 
 // ── Tabs ───────────────────────────────────────────────
 function switchTab(tab) {
-  document.querySelectorAll('.tab').forEach((t,i) => {
-    t.classList.toggle('active', ['riot','manual','history'][i] === tab);
-  });
-  document.getElementById('tab-riot').classList.toggle('hidden', tab !== 'riot');
-  document.getElementById('tab-manual').classList.toggle('hidden', tab !== 'manual');
-  document.getElementById('tab-history').classList.toggle('hidden', tab !== 'history');
+  const tabs = ['riot','manual','history','mytips'];
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', tabs[i] === tab));
+  tabs.forEach(t => document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab));
   if (tab === 'history') renderHistory();
+  if (tab === 'mytips') renderMyTipsList();
+}
+
+// ── My Personal Tips ───────────────────────────────────
+function getMyTips() { return JSON.parse(localStorage.getItem('lol_my_tips') || '[]'); }
+function saveMyTips(tips) { localStorage.setItem('lol_my_tips', JSON.stringify(tips)); }
+
+function saveTip() {
+  const champName = document.getElementById('tip-champ-input').value.trim();
+  const tipText   = document.getElementById('tip-text-input').value.trim();
+  const errEl     = document.getElementById('tip-error');
+  errEl.classList.remove('active');
+
+  if (!champName) { errEl.textContent = 'Choisis un champion.'; errEl.classList.add('active'); return; }
+  if (!tipText)   { errEl.textContent = 'Écris une astuce.';    errEl.classList.add('active'); return; }
+
+  const champ = championList.find(c => c.name.toLowerCase() === champName.toLowerCase());
+  const tips = getMyTips();
+
+  // Check if tip for this champion already exists → append, don't duplicate
+  const existing = tips.find(t => t.name.toLowerCase() === champName.toLowerCase());
+  if (existing) {
+    existing.tips.push({ id: Date.now(), text: tipText });
+  } else {
+    tips.push({ name: champ?.name || champName, key: champ?.key || '', tips: [{ id: Date.now(), text: tipText }] });
+  }
+  saveMyTips(tips);
+
+  // Feedback
+  document.getElementById('tip-champ-input').value = '';
+  document.getElementById('tip-text-input').value = '';
+  document.getElementById('tip-champ-input-ico').style.display = 'none';
+  const fb = document.getElementById('tip-save-feedback');
+  fb.style.opacity = '1'; setTimeout(() => fb.style.opacity = '0', 2000);
+  renderMyTipsList();
+}
+
+function deleteTip(champName, tipId) {
+  const tips = getMyTips();
+  const champ = tips.find(t => t.name.toLowerCase() === champName.toLowerCase());
+  if (!champ) return;
+  champ.tips = champ.tips.filter(t => t.id !== tipId);
+  if (!champ.tips.length) tips.splice(tips.indexOf(champ), 1);
+  saveMyTips(tips);
+  renderMyTipsList();
+}
+
+function renderMyTipsList() {
+  const tips = getMyTips();
+  const container = document.getElementById('mytips-list');
+  if (!tips.length) {
+    container.innerHTML = `<div class="tips-empty">Aucune astuce sauvegardée.<br>Ajoute tes premières notes sur tes champions favoris !</div>`;
+    return;
+  }
+  container.innerHTML = tips.map(champ => {
+    const iconUrl = getChampIconUrl(champ.key);
+    const tipsHTML = champ.tips.map(t =>
+      `<div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:6px">
+        <span style="color:var(--gold);flex-shrink:0">›</span>
+        <span class="mytip-card-text">${t.text}</span>
+        <button class="btn-tip-del" style="margin-left:auto;flex-shrink:0" onclick="deleteTip('${champ.name}',${t.id})">✕</button>
+      </div>`
+    ).join('');
+    return `<div class="mytip-card">
+      <img src="${iconUrl}" onerror="this.style.display='none'">
+      <div class="mytip-card-body">
+        <div class="mytip-card-champ">${champ.name}</div>
+        ${tipsHTML}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Inject personal tips into results
+function injectPersonalTips(ally, enemy) {
+  const allTips = getMyTips();
+  if (!allTips.length) { document.getElementById('personal-tips-box').style.display = 'none'; document.getElementById('ia-section-label').style.display = 'none'; return; }
+
+  const allyChamps  = Object.values(ally||{}).filter(Boolean);
+  const enemyChamps = Object.values(enemy||{}).filter(Boolean);
+  const allPresent  = [...allyChamps, ...enemyChamps];
+
+  const matched = [];
+  for (const champTips of allTips) {
+    const isAlly  = allyChamps.some(c => c.toLowerCase() === champTips.name.toLowerCase());
+    const isEnemy = enemyChamps.some(c => c.toLowerCase() === champTips.name.toLowerCase());
+    if (isAlly || isEnemy) {
+      matched.push({ ...champTips, side: isAlly ? 'ally' : 'enemy' });
+    }
+  }
+
+  if (!matched.length) { document.getElementById('personal-tips-box').style.display = 'none'; document.getElementById('ia-section-label').style.display = 'none'; return; }
+
+  const html = matched.map(champ => {
+    const iconUrl = getChampIconUrl(champ.key);
+    const tag = champ.side === 'ally'
+      ? `<span class="personal-tip-tag ally">Mon équipe</span>`
+      : `<span class="personal-tip-tag enemy">Ennemis</span>`;
+    return champ.tips.map(t => `
+      <div class="personal-tip-item">
+        <img class="personal-tip-icon" src="${iconUrl}" onerror="this.style.display='none'">
+        <div>
+          <div class="personal-tip-champ">${champ.name}${tag}</div>
+          <div class="personal-tip-text">${t.text}</div>
+        </div>
+      </div>`).join('');
+  }).join('');
+
+  document.getElementById('personal-tips-content').innerHTML = `<div class="personal-tips-body">${html}</div>`;
+  document.getElementById('personal-tips-box').style.display = 'block';
+
+  // Show IA separator
+  const aiLabel = selectedAI === 'gemini' ? '✨ Analyse Gemini' : '🤖 Analyse Claude';
+  document.getElementById('ia-label-badge').textContent = aiLabel;
+  document.getElementById('ia-section-label').style.display = 'flex';
 }
 
 // ── Role selectors ─────────────────────────────────────
@@ -530,6 +729,19 @@ function selectRole(btn) {
 function selectLiveRole(btn) {
   document.querySelectorAll('#live-role-pills .role-pill').forEach(b => b.classList.remove('active'));
   btn.classList.add('active'); liveRole = btn.dataset.role;
+}
+
+// ── AI Selector ────────────────────────────────────────
+function selectAI(btn, tab) {
+  const ai = btn.dataset.ai;
+  selectedAI = ai;
+  localStorage.setItem('lol_selected_ai', ai);
+  // Update both tabs in sync
+  ['riot','manual'].forEach(t => {
+    document.querySelectorAll(`#ai-selector-${t} .ai-pill`).forEach(p => p.classList.toggle('active', p.dataset.ai === ai));
+    document.getElementById(`claude-key-block-${t}`).classList.toggle('hidden', ai !== 'claude');
+    document.getElementById(`gemini-key-block-${t}`).classList.toggle('hidden', ai !== 'gemini');
+  });
 }
 
 // ── Riot Live Game ─────────────────────────────────────
@@ -629,12 +841,14 @@ function copyPromptFromLive() { if (liveComp) openPromptModal(liveComp.ally, liv
 // ── Core Analyze ───────────────────────────────────────
 async function analyze(ally, enemy, role) {
   showLoading();
+
   const claudeKey = (document.getElementById('claude-api-key').value || document.getElementById('claude-api-key-manual').value).trim();
-  if (!claudeKey) { hideLoading(); showManualError('Entre ta clé API Claude.'); return; }
+  const geminiKey = (document.getElementById('gemini-api-key').value || document.getElementById('gemini-api-key-manual').value).trim();
+
+  if (selectedAI === 'claude' && !claudeKey) { hideLoading(); showManualError('Entre ta clé API Claude (sk-ant-...).'); return; }
+  if (selectedAI === 'gemini' && !geminiKey) { hideLoading(); showManualError('Entre ta clé API Gemini (AIzaSy...).'); return; }
 
   const fmt = obj => Object.entries(obj).filter(([,v])=>v).map(([r,c])=>`${r}: ${c}`).join(', ');
-
-  // Fetch winrates for all champions present
   const allChamps = [...Object.values(ally), ...Object.values(enemy)].filter(Boolean);
   const winrateInfo = await fetchWinrates(allChamps);
   const wrContext = winrateInfo.length ? `\nWinrates actuels (patch récent) : ${winrateInfo.join(', ')}` : '';
@@ -667,23 +881,44 @@ Réponds UNIQUEMENT en JSON valide, sans backticks, sans commentaires, avec exac
 }`;
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': claudeKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1200, messages: [{ role: 'user', content: prompt }] })
-    });
-    if (!response.ok) {
-      const err = await response.json().catch(()=>({}));
-      hideLoading(); showManualError(`Erreur API Claude : ${err?.error?.message || response.status}`); return;
-    }
-    const data = await response.json();
-    if (!data.content?.length) { hideLoading(); showManualError('Réponse vide.'); return; }
-    const text = data.content.map(b=>b.text||'').join('').trim();
-    const clean = text.replace(/```json|```/g,'').trim();
     let parsed;
-    try { parsed = JSON.parse(clean); }
-    catch(e) { hideLoading(); showManualError(`Erreur parsing : ${text.substring(0,150)}...`); return; }
-    // Save to history
+
+    if (selectedAI === 'claude') {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': claudeKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+        body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1200, messages: [{ role: 'user', content: prompt }] })
+      });
+      if (!response.ok) {
+        const err = await response.json().catch(()=>({}));
+        hideLoading(); showManualError(`Erreur API Claude : ${err?.error?.message || response.status}`); return;
+      }
+      const data = await response.json();
+      if (!data.content?.length) { hideLoading(); showManualError('Réponse vide de Claude.'); return; }
+      const text = data.content.map(b=>b.text||'').join('').trim();
+      const clean = text.replace(/```json|```/g,'').trim();
+      try { parsed = JSON.parse(clean); }
+      catch(e) { hideLoading(); showManualError(`Erreur parsing Claude : ${text.substring(0,150)}...`); return; }
+
+    } else {
+      // Gemini
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 1200 } })
+      });
+      if (!response.ok) {
+        const err = await response.json().catch(()=>({}));
+        hideLoading(); showManualError(`Erreur API Gemini : ${err?.error?.message || response.status}`); return;
+      }
+      const data = await response.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      if (!text) { hideLoading(); showManualError('Réponse vide de Gemini.'); return; }
+      const clean = text.replace(/```json|```/g,'').trim();
+      try { parsed = JSON.parse(clean); }
+      catch(e) { hideLoading(); showManualError(`Erreur parsing Gemini : ${text.substring(0,150)}...`); return; }
+    }
+
     saveToHistory(ally, enemy, role, parsed, winrateInfo);
     renderResults(parsed, ally, enemy, winrateInfo);
   } catch(e) { hideLoading(); showManualError(`Erreur : ${e.message||e}`); }
@@ -746,7 +981,12 @@ function renderResults(data, ally, enemy, winrateInfo) {
   const badge = document.getElementById('verdict-badge');
   badge.textContent = data.verdict === 'favored' ? '✦ Favorable' : data.verdict === 'unfavored' ? '✦ Défavorable' : '✦ Équilibré';
   badge.className = 'verdict-badge ' + (data.verdict||'neutral');
-  document.getElementById('result-summary').textContent = data.summary || '';
+
+  // AI badge
+  const aiBadge = selectedAI === 'claude'
+    ? `<span class="ai-badge claude">🤖 Claude</span>`
+    : `<span class="ai-badge gemini">✨ Gemini</span>`;
+  document.getElementById('result-summary').innerHTML = (data.summary || '') + aiBadge;
 
   // Stats bar
   const allChamps = [...Object.values(ally||{}), ...Object.values(enemy||{})].filter(Boolean);
@@ -795,6 +1035,7 @@ function renderResults(data, ally, enemy, winrateInfo) {
     html += `</div></div>`;
   }
   document.getElementById('results-body').innerHTML = html;
+  injectPersonalTips(ally, enemy);
   document.getElementById('form-section').style.display = 'none';
   document.getElementById('results').classList.add('active');
 }
@@ -868,6 +1109,8 @@ function reset() {
   document.getElementById('form-section').style.display = 'block';
   document.getElementById('results-body').innerHTML = '';
   document.getElementById('stats-bar').innerHTML = '';
+  document.getElementById('personal-tips-box').style.display = 'none';
+  document.getElementById('ia-section-label').style.display = 'none';
 }
 function showLoading() { document.getElementById('form-section').style.display='none'; document.getElementById('loading').classList.add('active'); }
 function hideLoading() { document.getElementById('loading').classList.remove('active'); }
